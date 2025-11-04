@@ -1,0 +1,20 @@
+---
+title: 'Construyendo este Blog: Por qué usé Next.js y un "Git-based CMS"'
+date: '2025-11-01'
+summary: 'Por qué este blog no tiene base de datos ni panel de admin, y por qué eso es una ventaja (SSG vs. SSR).'
+---
+
+# ¿Dónde está el Panel de Admin?
+
+No hay. El "admin" para escribir esto es Visual Studio Code.
+
+Cuando decidí hacer este proyecto, quería demostrar el poder de **Next.js y la Generación de Sitio Estático (SSG)**.
+
+Así es como funciona:
+1.  Escribo este post en un archivo `.mdx` (como este mismo).
+2.  Hago `git push` a mi repositorio en GitHub.
+3.  Vercel (donde está hosteado) detecta el push y corre `npm run build`.
+4.  Mi función `getSortedPostsData` (en `lib/posts.ts`) usa `fs` de Node.js para leer todos los archivos de la carpeta `/posts`.
+5.  Mi función `generateStaticParams` (en `[slug]/page.tsx`) crea una página **HTML estática** por cada post.
+
+El resultado es un sitio que carga al instante, es increíblemente seguro (no hay base de datos que hackear) y tiene un SEO perfecto porque Google recibe HTML puro. Es la arquitectura ideal para un portfolio.
