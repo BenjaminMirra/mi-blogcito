@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getPostData, getAllPostIds } from '@/lib/posts';
 import { Box, Container, Paper, Typography, Divider } from '@mui/material';
 import { notFound } from 'next/navigation';
@@ -12,7 +13,6 @@ export async function generateStaticParams() {
   return paths;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function getSlug(params: any) {
   if (typeof params.then === 'function') {
     // Es una Promise
@@ -25,7 +25,7 @@ async function getSlug(params: any) {
  * Genera el <title> y <meta> tags para el <head> de la página,
  * ¡perfecto para SEO!
  */
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: any) {
   try {
     const slug = await getSlug(params);
     const postData = await getPostData(slug);
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
  * Este es el componente de la página.
  * Es un Componente de Servidor (por defecto).
  */
-export default async function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({ params }: any) {
   let postData;
   try {
     const slug = await getSlug(params);
