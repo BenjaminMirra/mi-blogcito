@@ -35,3 +35,47 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # mi-blogcito
+
+Blog personal hecho con Next.js, MDX y Material UI.
+
+## Descripción
+Este proyecto es un blog minimalista donde puedes escribir posts en formato Markdown/MDX y mostrarlos con un diseño moderno usando Material UI.
+
+## Instalación rápida
+1. Clona el repo y entra a la carpeta:
+	```bash
+	git clone https://github.com/BenjaminMirra/mi-blogcito.git
+	cd mi-blogcito
+	```
+2. Instala dependencias:
+	```bash
+	npm install
+	# o
+	yarn install
+	```
+3. Corre el servidor de desarrollo:
+	```bash
+	npm run dev
+	# o
+	yarn dev
+	```
+
+## Crear un post
+Agrega un archivo `.mdx` en la carpeta `posts/` siguiendo el formato:
+```mdx
+---
+title: "Título del post"
+date: "2025-11-04"
+summary: "Resumen corto del post."
+---
+
+Contenido en Markdown/MDX...
+```
+
+## Scripts útiles
+- `npm run dev` — Servidor de desarrollo
+- `npm run build` — Compilar para producción
+- `npm run start` — Servir la app compilada
+
+## Autor
+[BenjaminMirra](https://github.com/BenjaminMirra)
