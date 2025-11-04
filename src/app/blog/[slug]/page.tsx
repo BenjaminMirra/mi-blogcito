@@ -1,4 +1,3 @@
-
 import { getPostData, getAllPostIds } from '@/lib/posts';
 import { Box, Container, Paper, Typography, Divider } from '@mui/material';
 import { notFound } from 'next/navigation';
@@ -20,8 +19,7 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   try {
-    const { slug } = await params;
-    const postData = await getPostData(slug);
+    const postData = await getPostData(params.slug);
     return {
       title: postData.title,
       description: postData.summary,
@@ -39,15 +37,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
  * Es un Componente de Servidor (por defecto).
  */
 export default async function PostPage({ params }: { params: { slug: string } }) {
-
   let postData;
   try {
-    const { slug } = await params;
-    postData = await getPostData(slug);
+    postData = await getPostData(params.slug);
   } catch (error) {
     console.error(error);
     notFound();
   }
+
   const formattedDate = new Date(postData.date).toLocaleDateString('es-AR', {
     year: 'numeric',
     month: 'long',
