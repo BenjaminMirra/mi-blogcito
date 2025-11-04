@@ -12,6 +12,13 @@ export async function generateStaticParams() {
   return paths;
 }
 
+async function getSlug(params: { slug: string } | Promise<{ slug: string }>) {
+  if (params instanceof Promise) {
+    // Es una Promise
+    return (await params).slug;
+  }
+  return params.slug;
+}
 /**
  * Esta función (generateMetadata) también se ejecuta en el SERVIDOR.
  * Genera el <title> y <meta> tags para el <head> de la página,
@@ -19,7 +26,8 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   try {
-    const postData = await getPostData(params.slug);
+    const slug = await getSlug(params);
+    const postData = await getPostData(slug);
     return {
       title: postData.title,
       description: postData.summary,
@@ -39,7 +47,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default async function PostPage({ params }: { params: { slug: string } }) {
   let postData;
   try {
-    postData = await getPostData(params.slug);
+    const slug = await getSlug(params);
+    postData = await getPostData(slug);
   } catch (error) {
     console.error(error);
     notFound();
