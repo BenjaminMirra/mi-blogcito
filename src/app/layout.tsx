@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Mi Blogcito",
-  description: "Creada por Benjamín Mirra",
+  description: "Creada por Mirra Benjamín",
 };
 
 export default function RootLayout({

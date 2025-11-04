@@ -23,7 +23,7 @@ export default function Footer() {
           <Typography sx={{
             fontSize: "12px"
           }} color="text.secondary" align="center">
-            Desarrollado web realizado por Benjamín Mirra
+            Desarrollado web realizado por Mirra Benjamín
           </Typography>
         </Link>
       </Container>
