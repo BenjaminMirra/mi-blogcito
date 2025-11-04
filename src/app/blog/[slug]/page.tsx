@@ -12,8 +12,9 @@ export async function generateStaticParams() {
   return paths;
 }
 
-async function getSlug(params: { slug: string } | Promise<{ slug: string }>) {
-  if (params instanceof Promise) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function getSlug(params: any) {
+  if (typeof params.then === 'function') {
     // Es una Promise
     return (await params).slug;
   }
